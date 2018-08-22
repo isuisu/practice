@@ -1,0 +1,77 @@
+
+<div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+        <form (ngSubmit)="onSubmit()" #f="ngForm">
+         
+          
+          <div id="user-data" ngModelGroup="userData"  #userData="ngModelGroup">    
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" class="form-control" ngModel name="email" required  email  #email="ngModel">
+             
+            </div>
+              </div>
+              <span class="help-block" *ngIf="!email.valid && email.touched">Please enter a valid email!</span>
+          
+        
+          <div
+          id="user-data"
+          ngModelGroup="userData"
+          #userData="ngModelGroup">     
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" class="form-control" ngModel name="password" required  password  minlength="8" #password="ngModel">
+           
+          </div>
+        </div>
+        <span class="help-block" *ngIf="!password.valid && password.touched">password should have atleast 8 characters</span>
+         
+          <div class="form-group">
+            <label for="subscribe">Subscription</label>
+            <select  id="subscribe"class="form-control" [ngModel]="defaultQuestion"name="subscribe">
+              <option value="basic">Basic</option>
+              <option value="advanced">Advanced</option>
+              <option value="pro">pro</option>
+            </select>
+          </div>
+          <button class="btn btn-warning" type="submit" (click)="openVerticallyCentered(content)">Clear</button>
+         &nbsp;&nbsp; <button  class="btn btn-primary" type="submit"  [disabled]="!f.valid">Submit</button> 
+          
+         
+            </form>
+      </div>
+    </div>
+    <hr>
+    
+    <div class="row" *ngIf="submitted" id="sd" >
+      <div class="col-xs-12" style="color: black">
+        <span id="rcorners">
+        <h3>Your Data</h3>
+        <p>Pwd: {{ user.password }}</p>
+        <p>Mail: {{ user.email }}</p>
+        <p>Subscription: {{ user.subscribe }}</p>
+        </span>
+      </div>
+    </div>
+  </div>
+  
+  <ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Confirmation</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+     Are U sure u want to clear?
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" (click)="c('Save click')">Yes</button>
+      <button type="button" class="btn btn-primary" (click)="d('Save click')">No</button>
+    </div>
+  </ng-template>
+  
+ 
+  
+  
